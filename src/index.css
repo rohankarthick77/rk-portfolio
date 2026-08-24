@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-canvas: 5 5 7;
+    --color-crimson: 255 30 66;
+    --color-crimson-glow: 255 45 85;
+  }
+
+  html {
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #050507;
+    color: #f0f0f4;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #050507;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 30, 66, 0.6);
+  }
+}
+
+/* Lenis smooth scrolling rules */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Typography styles */
+.font-display {
+  font-family: 'Syne', 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.font-sans {
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', 'SF Mono', Consolas, Monaco, monospace;
+}
+
+/* Glow and gradient effects */
+.glow-crimson {
+  text-shadow: 0 0 30px rgba(255, 30, 66, 0.5), 0 0 60px rgba(255, 30, 66, 0.2);
+}
+
+.glow-crimson-box {
+  box-shadow: 0 0 40px -10px rgba(255, 30, 66, 0.35);
+}
+
+.glow-ambient {
+  box-shadow: 0 20px 80px -20px rgba(255, 30, 66, 0.15);
+}
+
+.border-glass {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.border-glass-glow {
+  border: 1px solid rgba(255, 30, 66, 0.25);
+}
+
+.bg-glass {
+  background: rgba(12, 12, 18, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.bg-glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Subtle scanlines effect for editorial tech feel */
+.scanlines {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 255, 0, 0.03)
+  );
+  background-size: 100% 4px, 6px 100%;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
