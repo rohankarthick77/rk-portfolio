@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Volume2, VolumeX, Menu, X, ArrowUpRight } from 'lucide-react';
 import { useSound } from '../context/SoundContext';
+import { getAssetUrl } from '../utils/assetPath';
 
 const NAV_LINKS = [
   { name: 'Works', href: '#work', label: '01' },
   { name: 'About & Edu', href: '#about', label: '02' },
   { name: 'Skills', href: '#skills', label: '03' },
-  { name: '3D Lab', href: '#lab', label: '04' },
-  { name: 'Visuals', href: '#creative', label: '05' },
-  { name: 'Awards', href: '#achievements', label: '06' },
-  { name: 'Contact', href: '#contact', label: '07' },
+  { name: 'Frames', href: '#photography', label: '04' },
+  { name: 'Awards', href: '#achievements', label: '05' },
+  { name: 'Contact', href: '#contact', label: '06' },
 ];
 
 export const Navbar: React.FC = () => {
@@ -45,7 +45,7 @@ export const Navbar: React.FC = () => {
       const scrollY = window.scrollY;
       setIsScrolled(scrollY > 60);
 
-      const sections = ['work', 'about', 'skills', 'lab', 'creative', 'achievements', 'contact'];
+      const sections = ['work', 'about', 'skills', 'photography', 'achievements', 'contact'];
       for (const section of sections.reverse()) {
         const el = document.getElementById(section);
         if (el) {
@@ -103,7 +103,7 @@ export const Navbar: React.FC = () => {
             >
               <div className="relative flex h-8 w-8 items-center justify-center rounded-full overflow-hidden border border-white/15 transition-transform duration-300 group-hover:scale-105 group-hover:border-crimson">
                 <img
-                  src="/rohan-photo.jpg"
+                  src={getAssetUrl('rohan-photo.jpg')}
                   alt="Rohan"
                   className="h-full w-full object-cover"
                 />

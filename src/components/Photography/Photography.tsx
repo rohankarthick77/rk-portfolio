@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { Aperture, X, ZoomIn, Camera } from 'lucide-react';
 import { useSound } from '../../context/SoundContext';
+import { getAssetUrl } from '../../utils/assetPath';
 
 interface Photo {
   id: string;
@@ -20,7 +21,7 @@ interface Photo {
 const photos: Photo[] = [
   {
     id: 'monkeys',
-    src: '/photo-monkeys.jpg',
+    src: getAssetUrl('photo-monkeys.jpg'),
     title: 'Jungle Vigil',
     genre: 'Wildlife & Nature',
     location: 'South India',
@@ -34,7 +35,7 @@ const photos: Photo[] = [
   },
   {
     id: 'portrait',
-    src: '/photo-portrait.jpg',
+    src: getAssetUrl('photo-portrait.jpg'),
     title: 'Weight of Years',
     genre: 'Portraiture',
     location: 'Tamil Nadu',
@@ -48,7 +49,7 @@ const photos: Photo[] = [
   },
   {
     id: 'rain-dog',
-    src: '/photo-rain-dog.jpg',
+    src: getAssetUrl('photo-rain-dog.jpg'),
     title: 'Waiting for the Rain',
     genre: 'Street Photography',
     location: 'Urban India',
@@ -62,7 +63,7 @@ const photos: Photo[] = [
   },
   {
     id: 'creative',
-    src: '/photo-creative.jpg',
+    src: getAssetUrl('photo-creative.jpg'),
     title: 'Upside-Down Sunshine',
     genre: 'Creative / Experimental',
     location: 'Tamil Nadu',

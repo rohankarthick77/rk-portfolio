@@ -5,6 +5,7 @@ import { HeroCanvas } from './HeroCanvas';
 import { useMousePosition } from '../../hooks/useMousePosition';
 import { useScrambleText } from '../../hooks/useScrambleText';
 import { useSound } from '../../context/SoundContext';
+import { getAssetUrl } from '../../utils/assetPath';
 
 const FIRST_NAME = 'ROHAN';
 const LAST_NAME = 'KARTHICK';
@@ -49,7 +50,7 @@ export const Hero: React.FC = () => {
         <div className="flex items-center gap-3 bg-white/[0.04] border border-white/10 px-3.5 py-1.5 rounded-full backdrop-blur-xl shadow-[0_0_20px_rgba(255,30,66,0.15)]">
           <div className="relative h-6 w-6 rounded-full overflow-hidden border border-crimson shadow-[0_0_8px_#ff1e42]">
             <img
-              src="/rohan-photo.jpg"
+              src={getAssetUrl('rohan-photo.jpg')}
               alt="Rohan Karthick P S"
               className="h-full w-full object-cover"
             />
@@ -226,7 +227,7 @@ export const Hero: React.FC = () => {
               {/* Exact Preserved Photo */}
               <div className="relative aspect-[3/4] w-full rounded-2xl overflow-hidden border border-white/10">
                 <img
-                  src="/rohan-photo.jpg"
+                  src={getAssetUrl('rohan-photo.jpg')}
                   alt="Rohan Karthick P S"
                   className="h-full w-full object-cover grayscale-[10%] group-hover:grayscale-0 transition-all duration-500"
                 />

@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { GraduationCap, Award, ShieldCheck, CheckCircle2, Code2, MapPin, Terminal, Globe, Lock, ShieldAlert, KeyRound, Radio } from 'lucide-react';
 import { educationData, certificationsData } from '../../data/educationData';
 import { useSound } from '../../context/SoundContext';
+import { getAssetUrl } from '../../utils/assetPath';
 
 const STATEMENT_WORDS = [
   'ENGINEERING', 'SCALABLE', 'SOFTWARE', 'SOLUTIONS',
@@ -80,7 +81,7 @@ export const About: React.FC = () => {
             <div className="sticky top-28 rounded-3xl bg-surface-elevated/90 border border-white/15 p-4 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.7)]">
               <div className="relative aspect-[3/4] w-full rounded-2xl overflow-hidden border border-white/10">
                 <img
-                  src="/rohan-photo.jpg"
+                  src={getAssetUrl('rohan-photo.jpg')}
                   alt="Rohan Karthick P S"
                   className="h-full w-full object-cover"
                 />

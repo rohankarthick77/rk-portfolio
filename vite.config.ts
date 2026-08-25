@@ -3,8 +3,8 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  base: '/rk-portfolio/',
+export default defineConfig(({ mode }) => ({
+  base: mode === 'production' ? '/rk-portfolio/' : '/',
   plugins: [react()],
   resolve: {
     alias: {
@@ -27,4 +27,4 @@ export default defineConfig({
     port: 3000,
     host: true,
   },
-});
+}));
