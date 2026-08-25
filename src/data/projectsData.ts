@@ -47,8 +47,8 @@ export const projectsData: Project[] = [
     // High-impact acoustic decibel sound wave & frequency spectrum visualization
     image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1400&q=80',
     mockupType: 'map',
-    githubUrl: 'https://github.com/rohankarthick',
-    liveUrl: 'https://github.com/rohankarthick',
+    githubUrl: 'https://github.com/rohankarthick77',
+    liveUrl: 'https://rohankarthick77.github.io/rk-portfolio/',
     featured: true,
   },
   {
@@ -87,8 +87,8 @@ export const projectsData: Project[] = [
     accentColor: '#00f0ff',
     image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1400&q=80',
     mockupType: 'telemetry',
-    githubUrl: 'https://github.com/rohankarthick',
-    liveUrl: 'https://github.com/rohankarthick',
+    githubUrl: 'https://github.com/rohankarthick77',
+    liveUrl: 'https://rohankarthick77.github.io/rk-portfolio/',
     featured: true,
   },
   {
@@ -121,8 +121,8 @@ export const projectsData: Project[] = [
     // Academic desk, focused study planning and cognitive learning workspace
     image: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=1400&q=80',
     mockupType: 'calendar',
-    githubUrl: 'https://github.com/rohankarthick',
-    liveUrl: 'https://github.com/rohankarthick',
+    githubUrl: 'https://github.com/rohankarthick77',
+    liveUrl: 'https://rohankarthick77.github.io/rk-portfolio/',
     featured: true,
   }
 ];

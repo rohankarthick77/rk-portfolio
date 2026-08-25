@@ -137,7 +137,7 @@ export const Contact: React.FC = () => {
             {/* Social Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 font-mono text-xs">
               <a
-                href="https://github.com/rohankarthick"
+                href="https://github.com/rohankarthick77"
                 target="_blank"
                 rel="noopener noreferrer"
                 onMouseEnter={playHoverSound}
@@ -148,14 +148,14 @@ export const Contact: React.FC = () => {
               </a>
 
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/rohan-karthick-4aa9b72b2/"
                 target="_blank"
                 rel="noopener noreferrer"
                 onMouseEnter={playHoverSound}
-                className="group flex items-center justify-between p-4 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/30 hover:bg-white/[0.05] transition-all"
+                className="group flex items-center justify-between p-4 rounded-2xl bg-[#0077b5]/10 border border-[#0077b5]/30 hover:border-[#0077b5] hover:bg-[#0077b5]/20 transition-all text-[#38bdf8]"
               >
-                <span>LINKEDIN</span>
-                <ArrowUpRight className="h-4 w-4 text-neutral-500 group-hover:text-white transition-colors" />
+                <span className="font-bold">LINKEDIN</span>
+                <ArrowUpRight className="h-4 w-4 text-[#38bdf8] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
 
               <a

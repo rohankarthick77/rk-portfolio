@@ -112,7 +112,18 @@ export const About: React.FC = () => {
                 </div>
                 <div className="flex justify-between">
                   <span>EMAIL</span>
-                  <span className="text-crimson font-medium">rohankarthick77@gmail.com</span>
+                  <a href="mailto:rohankarthick77@gmail.com" className="text-crimson font-medium hover:underline">rohankarthick77@gmail.com</a>
+                </div>
+                <div className="flex justify-between">
+                  <span>LINKEDIN</span>
+                  <a
+                    href="https://www.linkedin.com/in/rohan-karthick-4aa9b72b2/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#38bdf8] font-medium hover:underline"
+                  >
+                    rohan-karthick-4aa9b72b2
+                  </a>
                 </div>
               </div>
             </div>
