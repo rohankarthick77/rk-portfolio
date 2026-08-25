@@ -1,21 +1,19 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
-import { ShieldCheck, Trophy, Sparkles, MapPin, Code2, Terminal, ArrowUpRight } from 'lucide-react';
+import { ShieldCheck, Trophy, Sparkles, MapPin, Zap } from 'lucide-react';
 import { useSound } from '../../context/SoundContext';
 import { getAssetUrl } from '../../utils/assetPath';
 
 export const CinematicPortrait: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { playHoverSound, playClickSound } = useSound();
+  const { playHoverSound } = useSound();
 
-  // Mouse tilt tracking
+  // Interactive mouse tracking
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [6, -6]), { damping: 25, stiffness: 200 });
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), { damping: 25, stiffness: 200 });
-  const glowX = useTransform(mouseX, [-0.5, 0.5], ['30%', '70%']);
-  const glowY = useTransform(mouseY, [-0.5, 0.5], ['30%', '70%']);
+  const mouseRotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [5, -5]), { damping: 25, stiffness: 220 });
+  const mouseRotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-6, 6]), { damping: 25, stiffness: 220 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
@@ -31,21 +29,45 @@ export const CinematicPortrait: React.FC = () => {
     mouseY.set(0);
   };
 
-  // Scroll parallax & reaching hand depth transformation
+  // Continuous Scroll Motion (Smooth scrubbed spring physics)
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start end', 'end start'],
   });
 
-  // Reaching pose optical zoom & dynamic perspective
-  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.08, 1.16]);
-  const imageY = useTransform(scrollYProgress, [0, 1], [20, -30]);
-  const handZ = useTransform(scrollYProgress, [0, 0.6], [0, 30]);
+  // Spring configurations for ultra-smooth physical motion
+  const smoothConfig = { stiffness: 110, damping: 22, mass: 0.6 };
 
-  // Floating metric cards parallax offsets
-  const card1Y = useTransform(scrollYProgress, [0, 1], [30, -50]);
-  const card2Y = useTransform(scrollYProgress, [0, 1], [-20, 40]);
-  const card3Y = useTransform(scrollYProgress, [0, 1], [40, -30]);
+  // 1. Zoom into the face & reaching perspective
+  const rawScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.98, 1.12, 1.25]);
+  const smoothScale = useSpring(rawScale, smoothConfig);
+
+  // 2. Vertical kinetic travel tracking the reaching arm
+  const rawY = useTransform(scrollYProgress, [0, 0.5, 1], [40, 0, -50]);
+  const smoothY = useSpring(rawY, smoothConfig);
+
+  // 3. Dynamic tilt following the diagonal arm gesture
+  const rawRotateZ = useTransform(scrollYProgress, [0, 0.5, 1], [-2, 0, 2.5]);
+  const smoothRotateZ = useSpring(rawRotateZ, smoothConfig);
+
+  // 4. Perspective forward pitch (leans closer to user on scroll)
+  const rawPitchX = useTransform(scrollYProgress, [0, 0.5, 1], [4, 0, -6]);
+  const smoothPitchX = useSpring(rawPitchX, smoothConfig);
+
+  // 5. Red Rim-Light Aura Expansion on scroll
+  const rawGlowOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.35, 0.7, 0.9]);
+  const smoothGlowOpacity = useSpring(rawGlowOpacity, smoothConfig);
+
+  const rawGlowScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.85, 1.15, 1.4]);
+  const smoothGlowScale = useSpring(rawGlowScale, smoothConfig);
+
+  // 6. Light sweep beam traversing from hand to face on scroll
+  const lightSweepY = useTransform(scrollYProgress, [0, 1], ['120%', '-40%']);
+
+  // Parallax offsets for floating cards
+  const card1Y = useSpring(useTransform(scrollYProgress, [0, 1], [40, -60]), smoothConfig);
+  const card2Y = useSpring(useTransform(scrollYProgress, [0, 1], [-30, 50]), smoothConfig);
+  const card3Y = useSpring(useTransform(scrollYProgress, [0, 1], [50, -40]), smoothConfig);
 
   return (
     <div
@@ -53,63 +75,69 @@ export const CinematicPortrait: React.FC = () => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className="relative w-full max-w-xl mx-auto lg:max-w-none flex items-center justify-center py-4 select-none"
-      style={{ perspective: 1200 }}
+      style={{ perspective: 1400 }}
     >
-      {/* Dynamic Red Neon Ambient Glow Behind Silhouette */}
+      {/* Scroll-Reactive Red Neon Ambient Aura */}
       <motion.div
-        className="absolute w-[340px] sm:w-[460px] h-[340px] sm:h-[460px] rounded-full blur-[100px] sm:blur-[140px] pointer-events-none opacity-40 sm:opacity-55"
+        className="absolute w-[360px] sm:w-[500px] h-[360px] sm:h-[500px] rounded-full blur-[110px] sm:blur-[150px] pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, #ff1e42 0%, #ff0055 40%, transparent 70%)',
-          left: glowX,
-          top: glowY,
-          transform: 'translate(-50%, -50%)',
+          background: 'radial-gradient(circle, #ff1e42 0%, #ff0055 45%, transparent 70%)',
+          opacity: smoothGlowOpacity,
+          scale: smoothGlowScale,
         }}
       />
 
-      {/* Main 3D Card Stage */}
+      {/* Main 3D Card Stage with Dynamic Pitch & Tilt */}
       <motion.div
         style={{
-          rotateX,
-          rotateY,
+          rotateX: mouseRotateX,
+          rotateY: mouseRotateY,
           transformStyle: 'preserve-3d',
         }}
-        className="relative w-full aspect-[4/5] sm:aspect-[16/14] md:aspect-[16/13] max-w-lg sm:max-w-xl rounded-3xl overflow-hidden border border-white/15 bg-gradient-to-b from-[#0a0a0f] to-[#050507] shadow-[0_30px_100px_rgba(0,0,0,0.9),0_0_60px_rgba(255,30,66,0.25)] group"
+        className="relative w-full aspect-[4/5] sm:aspect-[16/14] md:aspect-[16/13] max-w-lg sm:max-w-xl rounded-3xl overflow-hidden border border-white/15 bg-gradient-to-b from-[#0a0a0f] to-[#050507] shadow-[0_35px_110px_rgba(0,0,0,0.95),0_0_70px_rgba(255,30,66,0.3)] group"
       >
-        {/* Subtle Cyber Grid & Laser Scan Overlay */}
-        <div className="absolute inset-0 scanlines opacity-25 z-10 pointer-events-none" />
+        {/* Cinematic Scanline Texture */}
+        <div className="absolute inset-0 scanlines opacity-20 z-10 pointer-events-none" />
 
-        {/* The Reaching Hand Portrait (Deep Perspective Zoom on Scroll) */}
+        {/* Dynamic Light Sweep Beam moving across arm and face on scroll */}
+        <motion.div
+          style={{ top: lightSweepY }}
+          className="absolute inset-x-0 h-28 bg-gradient-to-b from-transparent via-crimson/20 to-transparent z-15 pointer-events-none blur-md mix-blend-screen"
+        />
+
+        {/* THE ANIMATED REACHING PORTRAIT (Full Smooth Continuous Scroll Animation) */}
         <motion.div
           style={{
-            scale: imageScale,
-            y: imageY,
-            z: handZ,
+            scale: smoothScale,
+            y: smoothY,
+            rotateZ: smoothRotateZ,
+            rotateX: smoothPitchX,
           }}
-          className="absolute inset-0 h-full w-full will-change-transform"
+          className="absolute inset-0 h-full w-full will-change-transform transform-gpu"
         >
           <img
             src={getAssetUrl('rohan-photo.png')}
             alt="Rohan Karthick P S — Systems Architect & Creative Developer"
-            className="h-full w-full object-cover object-center filter contrast-[1.08] brightness-[1.02] group-hover:contrast-115 transition-all duration-700"
+            className="h-full w-full object-cover object-center filter contrast-[1.1] brightness-[1.03] group-hover:contrast-120 transition-all duration-700"
           />
 
-          {/* Seamless bottom & edge vignette blending into pure canvas */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050507] via-transparent to-transparent opacity-85" />
+          {/* Vignette blending edges seamlessly into background */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#050507] via-transparent to-transparent opacity-90" />
           <div className="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-[#050507]/80" />
         </motion.div>
 
-        {/* Ambient Red Rim Light Flares */}
-        <div className="absolute -left-10 top-1/4 w-32 h-64 bg-crimson/30 rounded-full blur-[50px] pointer-events-none mix-blend-screen" />
+        {/* Ambient Red Rim Light Flare */}
+        <div className="absolute -left-12 top-1/4 w-36 h-72 bg-crimson/35 rounded-full blur-[55px] pointer-events-none mix-blend-screen" />
 
-        {/* Corner Cyber Accents */}
+        {/* Corner Cyber Brackets */}
         <div className="absolute top-4 left-4 h-4 w-4 border-t-2 border-l-2 border-crimson rounded-tl z-20" />
         <div className="absolute top-4 right-4 h-4 w-4 border-t-2 border-r-2 border-crimson rounded-tr z-20" />
         <div className="absolute bottom-4 left-4 h-4 w-4 border-b-2 border-l-2 border-crimson rounded-bl z-20" />
         <div className="absolute bottom-4 right-4 h-4 w-4 border-b-2 border-r-2 border-crimson rounded-br z-20" />
 
-        {/* Top Status Header inside image */}
+        {/* Top Live Status Pill */}
         <div className="absolute top-5 inset-x-6 z-20 flex items-center justify-between pointer-events-none">
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 font-mono text-[10px] text-neutral-300">
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/65 backdrop-blur-md border border-white/10 font-mono text-[10px] text-neutral-300">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-crimson opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-crimson" />
@@ -117,13 +145,14 @@ export const CinematicPortrait: React.FC = () => {
             <span className="font-bold text-white tracking-wider">ROHAN KARTHICK P S</span>
           </div>
 
-          <div className="px-3 py-1 rounded-full bg-crimson/20 backdrop-blur-md border border-crimson/40 font-mono text-[10px] text-crimson font-bold uppercase tracking-wider">
-            LIVE // ONLINE
+          <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-crimson/20 backdrop-blur-md border border-crimson/40 font-mono text-[10px] text-crimson font-bold uppercase tracking-wider">
+            <Zap className="h-3 w-3" />
+            <span>KINETIC PORTRAIT</span>
           </div>
         </div>
 
-        {/* Bottom Editorial Caption */}
-        <div className="absolute bottom-5 inset-x-6 z-20 flex flex-col sm:flex-row sm:items-end justify-between gap-2 p-4 rounded-2xl bg-black/70 backdrop-blur-xl border border-white/10 font-mono text-xs">
+        {/* Bottom Information Overlay */}
+        <div className="absolute bottom-5 inset-x-6 z-20 flex flex-col sm:flex-row sm:items-end justify-between gap-2 p-4 rounded-2xl bg-black/75 backdrop-blur-xl border border-white/10 font-mono text-xs">
           <div>
             <span className="text-crimson font-bold block text-[10px] uppercase tracking-widest mb-0.5">
               CS & DESIGN // B.E. 2023 – 2027
@@ -139,7 +168,7 @@ export const CinematicPortrait: React.FC = () => {
         </div>
       </motion.div>
 
-      {/* Floating 3D Frosted Glass Metric Badge 1: Sathyabama Winner (Top Right) */}
+      {/* Floating Glass Metric Card 1: Hackathon Winner */}
       <motion.div
         style={{ y: card1Y, translateZ: 60 }}
         initial={{ opacity: 0, x: 40 }}
@@ -147,7 +176,7 @@ export const CinematicPortrait: React.FC = () => {
         transition={{ duration: 0.9, delay: 0.4 }}
         whileHover={{ scale: 1.05 }}
         onMouseEnter={playHoverSound}
-        className="absolute -top-4 -right-2 sm:-right-6 z-30 hidden sm:flex items-center gap-3 p-3.5 rounded-2xl bg-[#0e0e14]/90 backdrop-blur-2xl border border-crimson/40 shadow-[0_20px_50px_rgba(255,30,66,0.3)] cursor-pointer"
+        className="absolute -top-4 -right-2 sm:-right-6 z-30 hidden sm:flex items-center gap-3 p-3.5 rounded-2xl bg-[#0e0e14]/90 backdrop-blur-2xl border border-crimson/40 shadow-[0_20px_50px_rgba(255,30,66,0.35)] cursor-pointer"
       >
         <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-crimson/20 border border-crimson/40 text-crimson">
           <Trophy className="h-5 w-5 animate-bounce" />
@@ -165,7 +194,7 @@ export const CinematicPortrait: React.FC = () => {
         </div>
       </motion.div>
 
-      {/* Floating 3D Frosted Glass Metric Badge 2: Cisco Cybersecurity (Bottom Left) */}
+      {/* Floating Glass Metric Card 2: Cisco Cybersecurity */}
       <motion.div
         style={{ y: card2Y, translateZ: 50 }}
         initial={{ opacity: 0, x: -40 }}
@@ -191,7 +220,7 @@ export const CinematicPortrait: React.FC = () => {
         </div>
       </motion.div>
 
-      {/* Floating 3D Frosted Glass Metric Badge 3: AcousticPulse Architecture (Bottom Right) */}
+      {/* Floating Glass Metric Card 3: AcousticPulse Architecture */}
       <motion.div
         style={{ y: card3Y, translateZ: 70 }}
         initial={{ opacity: 0, y: 30 }}
