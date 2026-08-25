@@ -1,14 +1,21 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowDownRight, Sparkles, Terminal, Layers, Trophy, MapPin, Zap, ShieldCheck, Waves } from 'lucide-react';
+import { ArrowDownRight, Sparkles, Terminal, Layers, Trophy, MapPin, Zap, ShieldCheck, Waves, ArrowUpRight } from 'lucide-react';
 import { HeroCanvas } from './HeroCanvas';
+import { CinematicPortrait } from './CinematicPortrait';
 import { useMousePosition } from '../../hooks/useMousePosition';
 import { useScrambleText } from '../../hooks/useScrambleText';
 import { useSound } from '../../context/SoundContext';
-import { getAssetUrl } from '../../utils/assetPath';
 
 const FIRST_NAME = 'ROHAN';
 const LAST_NAME = 'KARTHICK';
+
+const CAPABILITIES = [
+  { num: '#01', label: 'Spatial Noise Analytics' },
+  { num: '#02', label: 'Network Socket Telemetry' },
+  { num: '#03', label: 'Full-Stack Architecture' },
+  { num: '#04', label: 'Cybersecurity Defense' },
+];
 
 export const Hero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -21,13 +28,13 @@ export const Hero: React.FC = () => {
     offset: ['start start', 'end start'],
   });
 
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
-  const heroScale = useTransform(scrollYProgress, [0, 0.7], [1, 0.96]);
-  const heroY = useTransform(scrollYProgress, [0, 0.7], [0, 60]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 0.75], [1, 0.96]);
+  const heroY = useTransform(scrollYProgress, [0, 0.75], [0, 60]);
 
   // Subtle 3D tilt calculation
-  const rotateX = mouse.normalizedY * -4;
-  const rotateY = mouse.normalizedX * 5;
+  const rotateX = mouse.normalizedY * -3;
+  const rotateY = mouse.normalizedX * 4;
 
   return (
     <section
@@ -46,24 +53,15 @@ export const Hero: React.FC = () => {
         transition={{ duration: 0.8, delay: 0.2 }}
         className="relative z-10 flex flex-wrap items-center justify-between gap-4 font-mono text-xs text-neutral-400 max-w-7xl mx-auto w-full"
       >
-        {/* Status Pill with Photo Micro-Avatar */}
-        <div className="flex items-center gap-3 bg-white/[0.04] border border-white/10 px-3.5 py-1.5 rounded-full backdrop-blur-xl shadow-[0_0_20px_rgba(255,30,66,0.15)]">
-          <div className="relative h-6 w-6 rounded-full overflow-hidden border border-crimson shadow-[0_0_8px_#ff1e42]">
-            <img
-              src={getAssetUrl('rohan-photo.jpg')}
-              alt="Rohan Karthick P S"
-              className="h-full w-full object-cover"
-            />
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-crimson opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-crimson" />
-            </span>
-            <span className="text-[11px] font-bold text-neutral-200">
-              ROHAN KARTHICK P S // BIT '27
-            </span>
-          </div>
+        {/* Status Pill */}
+        <div className="flex items-center gap-3 bg-white/[0.04] border border-white/10 px-4 py-2 rounded-full backdrop-blur-xl shadow-[0_0_25px_rgba(255,30,66,0.2)]">
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-crimson opacity-75" />
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-crimson" />
+          </span>
+          <span className="text-xs font-bold text-neutral-200 tracking-wider">
+            ROHAN KARTHICK P S // BIT '27
+          </span>
         </div>
 
         {/* Top Right Badges: Hackathon Winner & Cisco Certified */}
@@ -80,7 +78,7 @@ export const Hero: React.FC = () => {
         </div>
       </motion.div>
 
-      {/* Main Full-Width Monumental Typography (100% Unobstructed, Generous Padding) */}
+      {/* Main Hero Showcase */}
       <motion.div
         style={{
           opacity: heroOpacity,
@@ -93,7 +91,7 @@ export const Hero: React.FC = () => {
         className="relative z-10 my-auto max-w-7xl mx-auto w-full select-none pointer-events-auto py-4 sm:py-6"
       >
         {/* Scramble Tagline & 3D Meaning HUD */}
-        <div className="flex flex-wrap items-center justify-between gap-4 mb-3 sm:mb-5">
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-3 sm:mb-4">
           <div className="inline-flex items-center gap-2 font-mono text-xs sm:text-sm font-semibold tracking-[0.2em] text-crimson uppercase">
             <Zap className="h-4 w-4 animate-pulse text-crimson" />
             <span>{subtitleText}</span>
@@ -106,9 +104,9 @@ export const Hero: React.FC = () => {
           </div>
         </div>
 
-        {/* First Name: ROHAN — overflow-hidden clips the fly-up animation cleanly */}
+        {/* Monumental Typography: ROHAN */}
         <div className="overflow-hidden">
-          <h1 className="font-display text-[16vw] sm:text-[13vw] md:text-[11vw] font-black tracking-tighter text-[#f8f8fa] leading-[0.9] flex">
+          <h1 className="font-display text-[15vw] sm:text-[12vw] md:text-[10vw] font-black tracking-tighter text-[#f8f8fa] leading-[0.88] flex">
             {FIRST_NAME.split('').map((char, index) => (
               <motion.span
                 key={index}
@@ -120,7 +118,7 @@ export const Hero: React.FC = () => {
                   ease: [0.16, 1, 0.3, 1],
                 }}
                 whileHover={{
-                  y: -14,
+                  y: -12,
                   color: '#ff1e42',
                   transition: { duration: 0.2 },
                 }}
@@ -133,10 +131,10 @@ export const Hero: React.FC = () => {
           </h1>
         </div>
 
-        {/* Last Name row: KARTHICK + P S — single row, no wrapping ever */}
+        {/* Monumental Typography: KARTHICK P S (Single Row, No Wrap) */}
         <div className="overflow-hidden">
           <div className="flex items-baseline gap-0">
-            <h1 className="font-display text-[16vw] sm:text-[13vw] md:text-[11vw] font-black tracking-tighter leading-[0.9] flex text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-200 to-neutral-500">
+            <h1 className="font-display text-[15vw] sm:text-[12vw] md:text-[10vw] font-black tracking-tighter leading-[0.88] flex text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-200 to-neutral-500">
               {LAST_NAME.split('').map((char, index) => (
                 <motion.span
                   key={index}
@@ -148,7 +146,7 @@ export const Hero: React.FC = () => {
                     ease: [0.16, 1, 0.3, 1],
                   }}
                   whileHover={{
-                    y: -14,
+                    y: -12,
                     color: '#ff2d55',
                     transition: { duration: 0.2 },
                   }}
@@ -163,22 +161,22 @@ export const Hero: React.FC = () => {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.95, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="font-display text-[10vw] sm:text-[8vw] md:text-[7vw] font-extrabold text-crimson ml-3 sm:ml-5 tracking-tight leading-none self-end pb-1 shrink-0"
+              className="font-display text-[10vw] sm:text-[8vw] md:text-[6.5vw] font-extrabold text-crimson ml-3 sm:ml-5 tracking-tight leading-none self-end pb-1 shrink-0"
             >
               P S
             </motion.span>
           </div>
         </div>
 
-        {/* Dedicated Lower Section: Bio, Actions & Photo Card (Clean Separation) */}
-        <div className="mt-8 sm:mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-6 sm:pt-8 border-t border-white/10">
-          {/* Left: Bio & CTA Buttons */}
-          <div className="lg:col-span-8 space-y-6 text-center sm:text-left">
-            <p className="max-w-2xl font-sans text-sm sm:text-base text-neutral-300 leading-relaxed">
-              Pursuing Computer Science and Design at <span className="text-white font-semibold">Bannari Amman Institute of Technology</span>. Engineering full-stack spatial analytics dashboards, Leaflet GIS applications, Node.js & Express backends, and Python telemetry systems.
+        {/* Lower Main Stage: Editorial Bio + Animated Reaching Portrait Presentation */}
+        <div className="mt-8 sm:mt-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center pt-6 sm:pt-8 border-t border-white/10">
+          {/* Left Column: Narrative, CTA & Capabilities */}
+          <div className="lg:col-span-6 space-y-6 text-center sm:text-left">
+            <p className="font-sans text-base sm:text-lg text-neutral-200 leading-relaxed">
+              Pursuing Computer Science and Design at <span className="text-white font-bold">Bannari Amman Institute of Technology</span>. Engineering real-time spatial GIS mapping dashboards, Leaflet analytics engines, Node.js & Express backends, and Python telemetry systems.
             </p>
 
-            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4">
+            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 pt-2">
               <a
                 href="#work"
                 onClick={(e) => {
@@ -188,7 +186,7 @@ export const Hero: React.FC = () => {
                 }}
                 onMouseEnter={playHoverSound}
                 data-cursor="explore"
-                className="group relative inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-crimson text-white font-mono text-xs uppercase tracking-wider font-bold overflow-hidden shadow-[0_0_35px_rgba(255,30,66,0.5)] transition-transform duration-300 hover:scale-105"
+                className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-full bg-crimson text-white font-mono text-xs uppercase tracking-wider font-bold overflow-hidden shadow-[0_0_35px_rgba(255,30,66,0.5)] transition-transform duration-300 hover:scale-105"
               >
                 <span className="relative z-10">EXPLORE ACOUSTICPULSE & WORKS</span>
                 <ArrowDownRight className="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
@@ -204,51 +202,29 @@ export const Hero: React.FC = () => {
                 }}
                 onMouseEnter={playHoverSound}
                 data-cursor="link"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/[0.04] border border-white/15 text-neutral-200 font-mono text-xs uppercase tracking-wider hover:bg-white/10 hover:border-white/30 transition-all duration-300"
+                className="inline-flex items-center gap-2 px-6 py-4 rounded-full bg-white/[0.04] border border-white/15 text-neutral-200 font-mono text-xs uppercase tracking-wider hover:bg-white/10 hover:border-white/30 transition-all duration-300"
               >
-                <span>ACADEMIC PROFILE & CERTIFICATIONS</span>
+                <span>ACADEMIC PROFILE</span>
               </a>
+            </div>
+
+            {/* Editorial Capabilities Bar (Inspired by Studio References) */}
+            <div className="grid grid-cols-2 gap-2.5 pt-6 border-t border-white/10">
+              {CAPABILITIES.map((cap, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.02] border border-white/5 font-mono text-[11px] text-neutral-300"
+                >
+                  <span className="text-crimson font-bold">{cap.num}</span>
+                  <span className="truncate">{cap.label}</span>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Right: Authentic Photograph Showcase Card */}
-          <div className="lg:col-span-4 flex justify-center lg:justify-end">
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: 'spring', damping: 20, stiffness: 200 }}
-              className="relative w-60 sm:w-64 rounded-3xl p-3 bg-surface-elevated/90 border border-white/15 backdrop-blur-2xl shadow-[0_20px_50px_rgba(255,30,66,0.2)] group"
-            >
-              {/* Corner Brackets */}
-              <div className="absolute -top-1 -left-1 h-3.5 w-3.5 border-t-2 border-l-2 border-crimson rounded-tl-md" />
-              <div className="absolute -top-1 -right-1 h-3.5 w-3.5 border-t-2 border-r-2 border-crimson rounded-tr-md" />
-              <div className="absolute -bottom-1 -left-1 h-3.5 w-3.5 border-b-2 border-l-2 border-crimson rounded-bl-md" />
-              <div className="absolute -bottom-1 -right-1 h-3.5 w-3.5 border-b-2 border-r-2 border-crimson rounded-br-md" />
-
-              {/* Exact Preserved Photo */}
-              <div className="relative aspect-[3/4] w-full rounded-2xl overflow-hidden border border-white/10">
-                <img
-                  src={getAssetUrl('rohan-photo.jpg')}
-                  alt="Rohan Karthick P S"
-                  className="h-full w-full object-cover grayscale-[10%] group-hover:grayscale-0 transition-all duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-canvas via-transparent to-transparent opacity-60" />
-                
-                {/* Scanning Laser Line */}
-                <div className="absolute inset-x-0 top-0 h-[2px] bg-crimson shadow-[0_0_10px_#ff1e42] animate-[float_4s_ease-in-out_infinite]" />
-
-                {/* Bottom Overlay Info */}
-                <div className="absolute bottom-2.5 left-2.5 right-2.5 p-2 rounded-xl bg-black/75 backdrop-blur-md border border-white/10 font-mono text-[9px] text-neutral-300">
-                  <div className="flex items-center justify-between font-bold">
-                    <span className="text-crimson">ROHAN KARTHICK P S</span>
-                    <span className="text-emerald-400">ONLINE</span>
-                  </div>
-                  <div className="flex items-center gap-1 text-neutral-400 mt-0.5">
-                    <MapPin className="h-2.5 w-2.5 text-crimson" />
-                    <span>Pollachi, Tamil Nadu, India</span>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+          {/* Right Column: Cinematic Animated Reaching Portrait */}
+          <div className="lg:col-span-6 flex justify-center lg:justify-end">
+            <CinematicPortrait />
           </div>
         </div>
       </motion.div>

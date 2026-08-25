@@ -103,7 +103,7 @@ export const Navbar: React.FC = () => {
             >
               <div className="relative flex h-8 w-8 items-center justify-center rounded-full overflow-hidden border border-white/15 transition-transform duration-300 group-hover:scale-105 group-hover:border-crimson">
                 <img
-                  src={getAssetUrl('rohan-photo.jpg')}
+                  src={getAssetUrl('rohan-photo.png')}
                   alt="Rohan"
                   className="h-full w-full object-cover"
                 />

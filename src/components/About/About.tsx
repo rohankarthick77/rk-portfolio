@@ -79,11 +79,11 @@ export const About: React.FC = () => {
           {/* Authentic Portrait Card with Strict Face Preservation */}
           <div className="lg:col-span-4">
             <div className="sticky top-28 rounded-3xl bg-surface-elevated/90 border border-white/15 p-4 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.7)]">
-              <div className="relative aspect-[3/4] w-full rounded-2xl overflow-hidden border border-white/10">
+              <div className="relative aspect-[3/4] w-full rounded-2xl overflow-hidden border border-white/10 group">
                 <img
-                  src={getAssetUrl('rohan-photo.jpg')}
+                  src={getAssetUrl('rohan-photo.png')}
                   alt="Rohan Karthick P S"
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-canvas/90 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 font-mono text-xs">
