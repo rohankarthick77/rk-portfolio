@@ -8,9 +8,10 @@ const NAV_LINKS = [
   { name: 'Works', href: '#work', label: '01' },
   { name: 'About & Edu', href: '#about', label: '02' },
   { name: 'Skills', href: '#skills', label: '03' },
-  { name: 'Frames', href: '#photography', label: '04' },
-  { name: 'Awards', href: '#achievements', label: '05' },
-  { name: 'Contact', href: '#contact', label: '06' },
+  { name: 'APU Visit', href: '#experience', label: '04' },
+  { name: 'Frames', href: '#photography', label: '05' },
+  { name: 'Awards', href: '#achievements', label: '06' },
+  { name: 'Contact', href: '#contact', label: '07' },
 ];
 
 export const Navbar: React.FC = () => {
@@ -45,7 +46,7 @@ export const Navbar: React.FC = () => {
       const scrollY = window.scrollY;
       setIsScrolled(scrollY > 60);
 
-      const sections = ['work', 'about', 'skills', 'photography', 'achievements', 'contact'];
+      const sections = ['work', 'about', 'skills', 'experience', 'photography', 'achievements', 'contact'];
       for (const section of sections.reverse()) {
         const el = document.getElementById(section);
         if (el) {

@@ -7,6 +7,7 @@ import { Hero } from './components/Hero/Hero';
 import { About } from './components/About/About';
 import { ProjectsSection } from './components/Projects/ProjectsSection';
 import { SkillsEcosystem } from './components/Skills/SkillsEcosystem';
+import { IndustrialVisit } from './components/Experience/IndustrialVisit';
 import { Photography } from './components/Photography/Photography';
 import { Achievements } from './components/Achievements/Achievements';
 import { Contact } from './components/Contact/Contact';
@@ -41,6 +42,7 @@ export const App: React.FC = () => {
           <About />
           <ProjectsSection />
           <SkillsEcosystem />
+          <IndustrialVisit />
           <Photography />
           <Achievements />
           <Contact />
