@@ -7,6 +7,8 @@ import { Hero } from './components/Hero/Hero';
 import { About } from './components/About/About';
 import { ProjectsSection } from './components/Projects/ProjectsSection';
 import { SkillsEcosystem } from './components/Skills/SkillsEcosystem';
+import { InteractiveTerminal } from './components/Terminal/InteractiveTerminal';
+import { GitHubTelemetry } from './components/Telemetry/GitHubTelemetry';
 import { IndustrialVisit } from './components/Experience/IndustrialVisit';
 import { Photography } from './components/Photography/Photography';
 import { Achievements } from './components/Achievements/Achievements';
@@ -42,6 +44,8 @@ export const App: React.FC = () => {
           <About />
           <ProjectsSection />
           <SkillsEcosystem />
+          <InteractiveTerminal />
+          <GitHubTelemetry />
           <IndustrialVisit />
           <Photography />
           <Achievements />

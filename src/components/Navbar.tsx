@@ -8,10 +8,12 @@ const NAV_LINKS = [
   { name: 'Works', href: '#work', label: '01' },
   { name: 'About & Edu', href: '#about', label: '02' },
   { name: 'Skills', href: '#skills', label: '03' },
-  { name: 'APU Visit', href: '#experience', label: '04' },
-  { name: 'Frames', href: '#photography', label: '05' },
-  { name: 'Awards', href: '#achievements', label: '06' },
-  { name: 'Contact', href: '#contact', label: '07' },
+  { name: 'Terminal', href: '#terminal', label: '04' },
+  { name: 'Telemetry', href: '#telemetry', label: '05' },
+  { name: 'APU Visit', href: '#experience', label: '06' },
+  { name: 'Frames', href: '#photography', label: '07' },
+  { name: 'Awards', href: '#achievements', label: '08' },
+  { name: 'Contact', href: '#contact', label: '09' },
 ];
 
 export const Navbar: React.FC = () => {
@@ -46,7 +48,7 @@ export const Navbar: React.FC = () => {
       const scrollY = window.scrollY;
       setIsScrolled(scrollY > 60);
 
-      const sections = ['work', 'about', 'skills', 'experience', 'photography', 'achievements', 'contact'];
+      const sections = ['work', 'about', 'skills', 'terminal', 'telemetry', 'experience', 'photography', 'achievements', 'contact'];
       for (const section of sections.reverse()) {
         const el = document.getElementById(section);
         if (el) {
