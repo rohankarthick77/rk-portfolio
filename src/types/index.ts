@@ -53,6 +53,10 @@ export interface CertificationItem {
   badge: string;
   skills: string[];
   verified: boolean;
+  image?: string;
+  pdfUrl?: string;
+  credentialUrl?: string;
+  topics?: string[];
 }
 
 export interface GalleryItem {

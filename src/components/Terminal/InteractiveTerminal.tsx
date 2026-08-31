@@ -66,7 +66,7 @@ export const InteractiveTerminal: React.FC = () => {
               <div><span className="text-cyan-400 font-bold">skills</span> — List full technical stack matrix</div>
               <div><span className="text-cyan-400 font-bold">projects</span> — Summary of core engineering projects</div>
               <div><span className="text-cyan-400 font-bold">hackathon</span> — Sathyabama 2026 Winner details</div>
-              <div><span className="text-cyan-400 font-bold">cisco</span> — Verified Cybersecurity credential</div>
+              <div><span className="text-cyan-400 font-bold">cisco</span> — Verified Cisco Python & Cybersecurity credentials</div>
               <div><span className="text-cyan-400 font-bold">contact</span> — Get direct contact endpoints</div>
               <div><span className="text-cyan-400 font-bold">github</span> — Quick link to github.com/rohankarthick77</div>
               <div><span className="text-cyan-400 font-bold">clear</span> — Flush terminal output buffer</div>
@@ -141,14 +141,27 @@ export const InteractiveTerminal: React.FC = () => {
         break;
 
       case 'cisco':
+      case 'certifications':
+      case 'python':
         outputNode = (
-          <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs space-y-1 text-neutral-200">
-            <div className="text-emerald-400 font-bold flex items-center gap-1.5">
-              <ShieldCheck className="h-4 w-4 text-emerald-400" />
-              <span>OFFICIAL CISCO CYBERSECURITY CREDENTIAL</span>
+          <div className="space-y-2 text-xs">
+            <div className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs space-y-1 text-neutral-200">
+              <div className="text-amber-400 font-bold flex items-center gap-1.5">
+                <ShieldCheck className="h-4 w-4 text-amber-400" />
+                <span>PYTHON ESSENTIALS 1 — CISCO & OPENEDG PYTHON INSTITUTE</span>
+              </div>
+              <div>Issued by: Cisco Networking Academy × OpenEDG (Aug 29, 2026)</div>
+              <div className="text-neutral-400 text-[11px]">Validates Python 3 syntax, algorithmic problem solving, Standard Library scripting, and PCEP qualification readiness.</div>
             </div>
-            <div>Issued by: Cisco Networking Academy (Dec 2025)</div>
-            <div className="text-neutral-400 text-[11px]">Covers network defense, cryptographic security protocols, threat mitigation & vulnerability assessment.</div>
+
+            <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs space-y-1 text-neutral-200">
+              <div className="text-emerald-400 font-bold flex items-center gap-1.5">
+                <ShieldCheck className="h-4 w-4 text-emerald-400" />
+                <span>INTRODUCTION TO CYBERSECURITY — CISCO NETWORKING ACADEMY</span>
+              </div>
+              <div>Issued by: Cisco Networking Academy (Dec 2025)</div>
+              <div className="text-neutral-400 text-[11px]">Covers network defense, cryptographic security protocols, threat mitigation & vulnerability assessment.</div>
+            </div>
           </div>
         );
         break;

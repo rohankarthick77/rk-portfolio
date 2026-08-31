@@ -14,6 +14,17 @@ export const achievementsData: Achievement[] = [
   },
   {
     id: 'achieve-02',
+    year: '2026',
+    title: 'Python Essentials 1 — Cisco & Python Institute',
+    organization: 'Cisco Networking Academy × OpenEDG Python Institute',
+    badge: 'Verified Python Credential (PCEP Aligned)',
+    category: 'Technical Milestone',
+    description: 'Awarded the Statement of Achievement for Python Essentials 1 by Cisco Networking Academy in collaboration with OpenEDG Python Institute (Aug 2026). Validates proficiency in algorithmic problem solving, Python 3 Standard Library, software refactoring, and PCEP qualification readiness.',
+    impactMetrics: 'Cisco & OpenEDG Certified (Aug 2026)',
+    tags: ['Cisco Networking Academy', 'Python Institute', 'Python 3', 'PCEP', 'Algorithms', 'Software Engineering']
+  },
+  {
+    id: 'achieve-03',
     year: '2025',
     title: 'Introduction to Cybersecurity Credential',
     organization: 'Cisco Networking Academy',

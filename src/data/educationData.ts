@@ -29,11 +29,34 @@ export const educationData: EducationItem[] = [
 
 export const certificationsData: CertificationItem[] = [
   {
+    id: 'cert-python',
+    title: 'Python Essentials 1 — Statement of Achievement',
+    issuer: 'Cisco Networking Academy × OpenEDG Python Institute',
+    date: 'Aug 29, 2026',
+    badge: 'Verified Python Credential (PCEP Aligned)',
+    skills: [
+      'Python 3 Syntax & Algorithmic Problem Solving',
+      'Python Standard Library & Scripting',
+      'Software Development Process & Refactoring',
+      'PCEP Entry-Level Python Alignment',
+      'Modular Code Design & Debugging'
+    ],
+    verified: true,
+    image: 'cisco-python-certificate.png',
+    pdfUrl: 'cisco-python-certificate.pdf',
+    topics: [
+      'Design, develop, debug, execute, and refactor computer programs in Python 3',
+      'Think algorithmically to analyze problems and implement them as computer processes',
+      'Use Python Standard Library modules to resolve typical implementation challenges',
+      'Understand the programmer’s role across modern software engineering workflows'
+    ]
+  },
+  {
     id: 'cert-cyber',
     title: 'Introduction to Cybersecurity',
     issuer: 'Cisco Networking Academy',
     date: 'Dec 2025',
-    badge: 'Industry Verified Certification',
+    badge: 'Certified Security Specialist',
     skills: [
       'Network Security Protocols',
       'Threat Mitigation & Vulnerability Assessment',

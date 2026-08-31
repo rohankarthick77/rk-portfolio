@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { GraduationCap, Award, ShieldCheck, CheckCircle2, Code2, MapPin, Terminal, Globe, Lock, ShieldAlert, KeyRound, Radio } from 'lucide-react';
+import React, { useRef, useState } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { GraduationCap, Award, ShieldCheck, CheckCircle2, Code2, MapPin, Terminal, Globe, Lock, Eye, Download, X, Sparkles, FileText } from 'lucide-react';
 import { educationData, certificationsData } from '../../data/educationData';
 import { useSound } from '../../context/SoundContext';
 import { getAssetUrl } from '../../utils/assetPath';
@@ -12,7 +12,8 @@ const STATEMENT_WORDS = [
 
 export const About: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { playHoverSound } = useSound();
+  const [selectedCert, setSelectedCert] = useState<any>(null);
+  const { playHoverSound, playClickSound } = useSound();
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -198,59 +199,165 @@ export const About: React.FC = () => {
               </div>
             </div>
 
-            {/* Prominent Cisco Cybersecurity Certification Suite */}
-            <div>
-              <span className="font-mono text-xs text-neutral-400 uppercase tracking-widest mb-6 block flex items-center gap-2">
+            {/* Industry Certifications Suite */}
+            <div className="space-y-6">
+              <span className="font-mono text-xs text-neutral-400 uppercase tracking-widest block flex items-center gap-2">
                 <ShieldCheck className="h-4 w-4 text-emerald-400" />
-                <span>OFFICIAL INDUSTRY CERTIFICATION</span>
+                <span>OFFICIAL INDUSTRY CERTIFICATIONS // CISCO & OPENEDG</span>
               </span>
 
-              {certificationsData.map((cert) => (
-                <div
-                  key={cert.id}
-                  onMouseEnter={playHoverSound}
-                  className="p-8 rounded-3xl bg-gradient-to-br from-emerald-500/10 via-surface-elevated to-surface-elevated border border-emerald-500/30 hover:border-emerald-400/60 shadow-[0_15px_50px_rgba(16,185,129,0.15)] transition-all duration-300"
-                >
-                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-4">
-                    <div>
-                      <div className="flex items-center gap-2.5 mb-2">
-                        <span className="px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 font-mono text-[10px] text-emerald-400 font-bold uppercase tracking-wider flex items-center gap-1.5">
-                          <ShieldCheck className="h-3.5 w-3.5" />
-                          <span>{cert.badge}</span>
-                        </span>
-                        <span className="font-mono text-xs text-neutral-400">
-                          {cert.issuer} • {cert.date}
-                        </span>
+              <div className="space-y-6">
+                {certificationsData.map((cert) => {
+                  const isPython = cert.id === 'cert-python';
+                  return (
+                    <div
+                      key={cert.id}
+                      onMouseEnter={playHoverSound}
+                      className={`p-6 sm:p-8 rounded-3xl backdrop-blur-xl border transition-all duration-300 ${
+                        isPython
+                          ? 'bg-gradient-to-br from-amber-500/10 via-surface-elevated to-surface-elevated border-amber-500/30 hover:border-amber-400/60 shadow-[0_15px_50px_rgba(245,158,11,0.12)]'
+                          : 'bg-gradient-to-br from-emerald-500/10 via-surface-elevated to-surface-elevated border-emerald-500/30 hover:border-emerald-400/60 shadow-[0_15px_50px_rgba(16,185,129,0.12)]'
+                      }`}
+                    >
+                      <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-4 mb-4">
+                        <div>
+                          <div className="flex flex-wrap items-center gap-2.5 mb-2">
+                            <span
+                              className={`px-3 py-1 rounded-full font-mono text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5 border ${
+                                isPython
+                                  ? 'bg-amber-500/20 border-amber-500/40 text-amber-400'
+                                  : 'bg-emerald-500/20 border-emerald-500/40 text-emerald-400'
+                              }`}
+                            >
+                              <ShieldCheck className="h-3.5 w-3.5" />
+                              <span>{cert.badge}</span>
+                            </span>
+                            <span className="font-mono text-xs text-neutral-400">
+                              {cert.issuer} • {cert.date}
+                            </span>
+                          </div>
+                          <h3 className="font-display text-xl sm:text-2xl font-extrabold text-white">
+                            {cert.title}
+                          </h3>
+                        </div>
+
+                        <div className="flex items-center gap-2">
+                          {cert.image && (
+                            <button
+                              onClick={() => {
+                                playClickSound();
+                                setSelectedCert(cert);
+                              }}
+                              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/40 text-amber-300 font-mono text-xs font-bold transition-all shadow-[0_0_15px_rgba(245,158,11,0.2)]"
+                            >
+                              <Eye className="h-3.5 w-3.5" />
+                              <span>VIEW CERTIFICATE</span>
+                            </button>
+                          )}
+                          <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/[0.04] border border-white/10 font-mono text-[11px] text-neutral-300">
+                            <Lock className="h-3 w-3 text-neutral-400" />
+                            <span>VERIFIED</span>
+                          </div>
+                        </div>
                       </div>
-                      <h3 className="font-display text-2xl font-extrabold text-white">
-                        {cert.title}
-                      </h3>
-                    </div>
 
-                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 font-mono text-xs text-emerald-300">
-                      <Lock className="h-3.5 w-3.5" />
-                      <span>OFFICIAL CISCO CREDENTIAL</span>
-                    </div>
-                  </div>
+                      <p className="font-sans text-sm text-neutral-300 leading-relaxed mb-5">
+                        {isPython
+                          ? 'Official credential awarded by Cisco Networking Academy in partnership with OpenEDG Python Institute (Aug 29, 2026). Validates proficiency in writing, refactoring, and debugging algorithmic Python 3 programs, utilizing standard library modules, and understanding software engineering fundamentals aligned with PCEP certification standards.'
+                          : 'Comprehensive industry credential issued by Cisco Networking Academy (Dec 2025). Validates core competencies in network defense architectures, threat modeling, cryptographic data protection, vulnerability assessment, and secure full-stack software development.'}
+                      </p>
 
-                  <p className="font-sans text-sm text-neutral-300 leading-relaxed mb-6">
-                    Comprehensive industry credential issued by Cisco Networking Academy (Dec 2025). Validates core competencies in network defense architectures, threat modeling, cryptographic data protection, vulnerability assessment, and secure full-stack software development.
-                  </p>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 border-t border-white/10">
-                    {cert.skills.map((skill, idx) => (
-                      <div key={idx} className="flex items-center gap-2 font-mono text-xs text-neutral-200 bg-white/[0.03] p-2.5 rounded-xl border border-white/5">
-                        <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
-                        <span>{skill}</span>
+                      {/* Covered Skills */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-4 border-t border-white/10">
+                        {cert.skills.map((skill, idx) => (
+                          <div
+                            key={idx}
+                            className="flex items-center gap-2 font-mono text-xs text-neutral-200 bg-white/[0.02] p-2.5 rounded-xl border border-white/5"
+                          >
+                            <CheckCircle2
+                              className={`h-4 w-4 shrink-0 ${
+                                isPython ? 'text-amber-400' : 'text-emerald-400'
+                              }`}
+                            />
+                            <span>{skill}</span>
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Certificate Inspection Modal */}
+      <AnimatePresence>
+        {selectedCert && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedCert(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-black/90 backdrop-blur-2xl"
+          >
+            <button
+              onClick={() => setSelectedCert(null)}
+              className="absolute top-6 right-6 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-colors"
+              aria-label="Close certificate modal"
+            >
+              <X className="h-5 w-5" />
+            </button>
+
+            <motion.div
+              initial={{ scale: 0.92, opacity: 0, y: 25 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.92, opacity: 0, y: 25 }}
+              transition={{ duration: 0.35 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-4xl w-full rounded-3xl overflow-hidden bg-[#0d0d14] border border-white/20 shadow-[0_30px_90px_rgba(0,0,0,0.95)]"
+            >
+              {/* Certificate Image View */}
+              <div className="w-full bg-white p-2 sm:p-4 flex items-center justify-center max-h-[70vh] overflow-auto">
+                <img
+                  src={getAssetUrl(selectedCert.image)}
+                  alt={selectedCert.title}
+                  className="max-h-[65vh] w-auto object-contain rounded-lg shadow-md"
+                />
+              </div>
+
+              {/* Certificate Footer */}
+              <div className="p-6 sm:p-8 bg-[#0d0d14] border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                  <div className="flex items-center gap-2 font-mono text-xs text-amber-400 mb-1">
+                    <ShieldCheck className="h-3.5 w-3.5" />
+                    <span>{selectedCert.issuer}</span>
+                  </div>
+                  <h4 className="font-display text-lg sm:text-xl font-bold text-white">
+                    {selectedCert.title}
+                  </h4>
+                  <span className="font-mono text-xs text-neutral-400">
+                    Issued to Rohan Karthick P S on {selectedCert.date}
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <a
+                    href={getAssetUrl(selectedCert.pdfUrl || selectedCert.image)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500 text-black font-mono text-xs font-bold uppercase tracking-wider hover:bg-amber-400 transition-all shadow-[0_0_20px_rgba(245,158,11,0.4)]"
+                  >
+                    <Download className="h-4 w-4" />
+                    <span>OPEN PDF / DOWNLOAD</span>
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
