@@ -66,7 +66,7 @@ export const InteractiveTerminal: React.FC = () => {
               <div><span className="text-cyan-400 font-bold">skills</span> — List full technical stack matrix</div>
               <div><span className="text-cyan-400 font-bold">projects</span> — Summary of core engineering projects</div>
               <div><span className="text-cyan-400 font-bold">hackathon</span> — Sathyabama 2026 Winner details</div>
-              <div><span className="text-cyan-400 font-bold">cisco</span> — Verified Cisco Python & Cybersecurity credentials</div>
+              <div><span className="text-cyan-400 font-bold">certifications</span> — Cisco Python, Cyber & Cognifyz credentials</div>
               <div><span className="text-cyan-400 font-bold">contact</span> — Get direct contact endpoints</div>
               <div><span className="text-cyan-400 font-bold">github</span> — Quick link to github.com/rohankarthick77</div>
               <div><span className="text-cyan-400 font-bold">clear</span> — Flush terminal output buffer</div>
@@ -143,8 +143,18 @@ export const InteractiveTerminal: React.FC = () => {
       case 'cisco':
       case 'certifications':
       case 'python':
+      case 'internship':
         outputNode = (
           <div className="space-y-2 text-xs">
+            <div className="p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-xs space-y-1 text-neutral-200">
+              <div className="text-cyan-400 font-bold flex items-center gap-1.5">
+                <ShieldCheck className="h-4 w-4 text-cyan-400" />
+                <span>FRONT-END DEVELOPMENT INTERNSHIP — COGNIFYZ TECHNOLOGIES</span>
+              </div>
+              <div>Period: Dec 26, 2025 – Jan 26, 2026 • Intern ID: CTI/A1/C276478</div>
+              <div className="text-neutral-400 text-[11px]">ISO 9001:2015 certified internship delivering modern responsive web architecture and UI components.</div>
+            </div>
+
             <div className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs space-y-1 text-neutral-200">
               <div className="text-amber-400 font-bold flex items-center gap-1.5">
                 <ShieldCheck className="h-4 w-4 text-amber-400" />

@@ -25,6 +25,17 @@ export const achievementsData: Achievement[] = [
   },
   {
     id: 'achieve-03',
+    year: '2026',
+    title: 'Front-End Development Internship',
+    organization: 'Cognifyz Technologies',
+    badge: 'Front-End Intern (ID: CTI/A1/C276478)',
+    category: 'Technical Milestone',
+    description: 'Successfully served as a Front-End Development Intern at Cognifyz Technologies (Dec 2025 – Jan 2026). Recognized for exceptional UI coordination, passion for frontend architecture, and delivering high-quality responsive web solutions.',
+    impactMetrics: 'Completed Internship (ISO 9001:2015 Verified)',
+    tags: ['Cognifyz Technologies', 'Front-End Development', 'React.js', 'JavaScript', 'UI/UX Design', 'Agile']
+  },
+  {
+    id: 'achieve-04',
     year: '2025',
     title: 'Introduction to Cybersecurity Credential',
     organization: 'Cisco Networking Academy',

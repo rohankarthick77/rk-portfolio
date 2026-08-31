@@ -52,6 +52,28 @@ export const certificationsData: CertificationItem[] = [
     ]
   },
   {
+    id: 'cert-cognifyz',
+    title: 'Front-End Development Internship Certificate',
+    issuer: 'Cognifyz Technologies (ISO 9001:2015 & MSME Certified)',
+    date: 'Dec 2025 – Jan 2026',
+    badge: 'Front-End Development Intern (ID: CTI/A1/C276478)',
+    skills: [
+      'Responsive Web Architecture & UI Design',
+      'Modern JavaScript & Front-End Frameworks',
+      'Component Design & State Management',
+      'Cross-Browser Optimization & Code Quality',
+      'Technical Coordination & Agile Task Execution'
+    ],
+    verified: true,
+    image: 'cognifyz-internship-certificate.png',
+    pdfUrl: 'cognifyz-internship-certificate.pdf',
+    topics: [
+      'Engineered interactive responsive front-end web interfaces adhering to modern UI/UX design standards',
+      'Demonstrated high attention to detail, rapid problem solving, and effective team coordination',
+      'Successfully delivered hands-on development assignments and production-grade client side modules'
+    ]
+  },
+  {
     id: 'cert-cyber',
     title: 'Introduction to Cybersecurity',
     issuer: 'Cisco Networking Academy',

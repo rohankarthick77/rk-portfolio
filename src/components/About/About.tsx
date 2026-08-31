@@ -209,25 +209,47 @@ export const About: React.FC = () => {
               <div className="space-y-6">
                 {certificationsData.map((cert) => {
                   const isPython = cert.id === 'cert-python';
+                  const isCognifyz = cert.id === 'cert-cognifyz';
+                  const isCyber = cert.id === 'cert-cyber';
+
+                  const theme = isPython
+                    ? {
+                        cardBg: 'bg-gradient-to-br from-amber-500/10 via-surface-elevated to-surface-elevated border-amber-500/30 hover:border-amber-400/60 shadow-[0_15px_50px_rgba(245,158,11,0.12)]',
+                        badge: 'bg-amber-500/20 border-amber-500/40 text-amber-400',
+                        accentText: 'text-amber-400',
+                        btnBg: 'bg-amber-500/20 hover:bg-amber-500/30 border-amber-500/40 text-amber-300 shadow-[0_0_15px_rgba(245,158,11,0.2)]',
+                      }
+                    : isCognifyz
+                    ? {
+                        cardBg: 'bg-gradient-to-br from-cyan-500/10 via-surface-elevated to-surface-elevated border-cyan-500/30 hover:border-cyan-400/60 shadow-[0_15px_50px_rgba(6,182,212,0.12)]',
+                        badge: 'bg-cyan-500/20 border-cyan-500/40 text-cyan-400',
+                        accentText: 'text-cyan-400',
+                        btnBg: 'bg-cyan-500/20 hover:bg-cyan-500/30 border-cyan-500/40 text-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.2)]',
+                      }
+                    : {
+                        cardBg: 'bg-gradient-to-br from-emerald-500/10 via-surface-elevated to-surface-elevated border-emerald-500/30 hover:border-emerald-400/60 shadow-[0_15px_50px_rgba(16,185,129,0.12)]',
+                        badge: 'bg-emerald-500/20 border-emerald-500/40 text-emerald-400',
+                        accentText: 'text-emerald-400',
+                        btnBg: 'bg-emerald-500/20 hover:bg-emerald-500/30 border-emerald-500/40 text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.2)]',
+                      };
+
+                  const description = isPython
+                    ? 'Official credential awarded by Cisco Networking Academy in partnership with OpenEDG Python Institute (Aug 29, 2026). Validates proficiency in writing, refactoring, and debugging algorithmic Python 3 programs, utilizing standard library modules, and understanding software engineering fundamentals aligned with PCEP certification standards.'
+                    : isCognifyz
+                    ? 'Official Internship Completion Certificate awarded by Cognifyz Technologies (ISO 9001:2015 & MSME Certified). Completed intensive Front-End Development internship (Dec 26, 2025 – Jan 26, 2026), recognized for exceptional coordination, high attention to detail, and delivering responsive modern UI modules.'
+                    : 'Comprehensive industry credential issued by Cisco Networking Academy (Dec 2025). Validates core competencies in network defense architectures, threat modeling, cryptographic data protection, vulnerability assessment, and secure full-stack software development.';
+
                   return (
                     <div
                       key={cert.id}
                       onMouseEnter={playHoverSound}
-                      className={`p-6 sm:p-8 rounded-3xl backdrop-blur-xl border transition-all duration-300 ${
-                        isPython
-                          ? 'bg-gradient-to-br from-amber-500/10 via-surface-elevated to-surface-elevated border-amber-500/30 hover:border-amber-400/60 shadow-[0_15px_50px_rgba(245,158,11,0.12)]'
-                          : 'bg-gradient-to-br from-emerald-500/10 via-surface-elevated to-surface-elevated border-emerald-500/30 hover:border-emerald-400/60 shadow-[0_15px_50px_rgba(16,185,129,0.12)]'
-                      }`}
+                      className={`p-6 sm:p-8 rounded-3xl backdrop-blur-xl border transition-all duration-300 ${theme.cardBg}`}
                     >
                       <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-4 mb-4">
                         <div>
                           <div className="flex flex-wrap items-center gap-2.5 mb-2">
                             <span
-                              className={`px-3 py-1 rounded-full font-mono text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5 border ${
-                                isPython
-                                  ? 'bg-amber-500/20 border-amber-500/40 text-amber-400'
-                                  : 'bg-emerald-500/20 border-emerald-500/40 text-emerald-400'
-                              }`}
+                              className={`px-3 py-1 rounded-full font-mono text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5 border ${theme.badge}`}
                             >
                               <ShieldCheck className="h-3.5 w-3.5" />
                               <span>{cert.badge}</span>
@@ -248,7 +270,7 @@ export const About: React.FC = () => {
                                 playClickSound();
                                 setSelectedCert(cert);
                               }}
-                              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/40 text-amber-300 font-mono text-xs font-bold transition-all shadow-[0_0_15px_rgba(245,158,11,0.2)]"
+                              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl border font-mono text-xs font-bold transition-all ${theme.btnBg}`}
                             >
                               <Eye className="h-3.5 w-3.5" />
                               <span>VIEW CERTIFICATE</span>
@@ -262,9 +284,7 @@ export const About: React.FC = () => {
                       </div>
 
                       <p className="font-sans text-sm text-neutral-300 leading-relaxed mb-5">
-                        {isPython
-                          ? 'Official credential awarded by Cisco Networking Academy in partnership with OpenEDG Python Institute (Aug 29, 2026). Validates proficiency in writing, refactoring, and debugging algorithmic Python 3 programs, utilizing standard library modules, and understanding software engineering fundamentals aligned with PCEP certification standards.'
-                          : 'Comprehensive industry credential issued by Cisco Networking Academy (Dec 2025). Validates core competencies in network defense architectures, threat modeling, cryptographic data protection, vulnerability assessment, and secure full-stack software development.'}
+                        {description}
                       </p>
 
                       {/* Covered Skills */}
@@ -275,9 +295,7 @@ export const About: React.FC = () => {
                             className="flex items-center gap-2 font-mono text-xs text-neutral-200 bg-white/[0.02] p-2.5 rounded-xl border border-white/5"
                           >
                             <CheckCircle2
-                              className={`h-4 w-4 shrink-0 ${
-                                isPython ? 'text-amber-400' : 'text-emerald-400'
-                              }`}
+                              className={`h-4 w-4 shrink-0 ${theme.accentText}`}
                             />
                             <span>{skill}</span>
                           </div>
