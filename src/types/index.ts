@@ -86,4 +86,10 @@ export interface Achievement {
   description: string;
   impactMetrics: string;
   tags: string[];
+  images?: {
+    src: string;
+    caption: string;
+    type?: 'certificate' | 'photo';
+  }[];
+  pdfUrl?: string;
 }

@@ -183,13 +183,13 @@ export const CinematicPortrait: React.FC = () => {
         </div>
         <div>
           <span className="font-mono text-[9px] uppercase tracking-widest text-crimson font-bold block">
-            1ST PLACE // WINNER
+            HACKATHON // WINNERS
           </span>
           <span className="font-display text-xs font-bold text-white block">
             Sathyabama Hackathon '26
           </span>
           <span className="font-mono text-[9px] text-neutral-400">
-            Software Domain Winner
+            Software Domain Winners
           </span>
         </div>
       </motion.div>

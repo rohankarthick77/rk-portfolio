@@ -4,13 +4,26 @@ export const achievementsData: Achievement[] = [
   {
     id: 'achieve-01',
     year: '2026',
-    title: 'Winner — Industry Innovation Hackathon 2026',
-    organization: 'Sathyabama University',
-    badge: '1st Place / Winner (Software Domain)',
+    title: 'Winners — Industry Innovation Hackathon 2026',
+    organization: 'Sathyabama Institute of Science and Technology',
+    badge: 'Winners (Software Domain)',
     category: 'Hackathon',
-    description: 'Secured 1st Place / Winner in the Software Domain at the Industry Innovation Hackathon 2026 hosted by Sathyabama University, recognized for engineering high-impact, full-stack software solutions evaluated by leading industry judges.',
-    impactMetrics: '1st Place Winner — Software Domain',
-    tags: ['Software Domain Winner', 'Innovation', 'Full-Stack Engineering', 'React.js', 'Node.js', 'Prisma']
+    description: 'Awarded Certificate of Appreciation for outstanding performance and securing winning honors in the Industry Innovation Hackathon 2026 (held on 17th – 18th March 2026) hosted by Sathyabama Institute of Science and Technology (Accredited NAAC A++ / Category-1 University by UGC). Evaluated and awarded by industry jury & startup innovation council.',
+    impactMetrics: 'Winners — Software Domain (March 2026)',
+    tags: ['Sathyabama University', 'Winners', 'Industry Innovation Hackathon', 'Software Domain', 'Full-Stack Architecture', 'Live Jury Defense'],
+    images: [
+      {
+        src: 'sathyabama-hackathon-certificate.png',
+        caption: 'Official Certificate of Appreciation — Industry Innovation Hackathon 2026',
+        type: 'certificate'
+      },
+      {
+        src: 'sathyabama-hackathon-presentation.jpg',
+        caption: 'Live Project Presentation & Jury Evaluation at Sathyabama University (Block-14, Chennai)',
+        type: 'photo'
+      }
+    ],
+    pdfUrl: 'sathyabama-hackathon-certificate.pdf'
   },
   {
     id: 'achieve-02',

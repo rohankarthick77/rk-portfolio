@@ -9,7 +9,7 @@ export const educationData: EducationItem[] = [
     period: '2023 – 2027',
     highlights: [
       'Focusing on Full-Stack Software Engineering, Spatial Mapping, and Design Principles',
-      '1st Place Winner — Industry Innovation Hackathon 2026 at Sathyabama University (Software Domain)',
+      'Winners — Industry Innovation Hackathon 2026 at Sathyabama University (Software Domain)',
       'Developing data-driven applications with JavaScript, React, Node.js, Express, SQLite, and Python'
     ]
   },

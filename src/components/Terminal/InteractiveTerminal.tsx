@@ -132,10 +132,10 @@ export const InteractiveTerminal: React.FC = () => {
           <div className="p-2.5 rounded-xl bg-crimson/10 border border-crimson/30 text-xs space-y-1 text-neutral-200">
             <div className="text-crimson font-bold flex items-center gap-1.5">
               <Trophy className="h-4 w-4 text-crimson" />
-              <span>1ST PLACE WINNER // SATHYABAMA INNOVATION HACKATHON 2026</span>
+              <span>WINNERS // SATHYABAMA INDUSTRY INNOVATION HACKATHON 2026</span>
             </div>
-            <div>Category: Software Domain • Sathyabama University</div>
-            <div className="text-neutral-400 text-[11px]">Engineered award-winning software architecture recognized by national technical jury.</div>
+            <div>Category: Software Domain • Sathyabama Institute of Science and Technology (17–18 March 2026)</div>
+            <div className="text-neutral-400 text-[11px]">Presented live project demo and defended software architecture before industry jury panel.</div>
           </div>
         );
         break;
